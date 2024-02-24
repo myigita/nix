@@ -1,0 +1,19 @@
+.workspaces {
+  margin: 3px 0;
+  & button {
+    margin: 0 3px;
+    min-width: 1rem;
+    min-height: 1rem;
+    border-radius: 24px;
+    background: darken($fg, 48%);
+    transition: all 0.3s $materialStandard;
+    &:hover {
+      min-width: 1.5rem;
+      background: darken($fg, 24%);
+    }
+    &.focused {
+      min-width: 2rem;
+      background: $fg;
+    }
+  }
+}

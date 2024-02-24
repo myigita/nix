@@ -1,0 +1,46 @@
+@import "workspaces";
+@import "clock";
+
+.systemInfo {
+  font-family: $iconFont;
+  transition: all 0.3s $materialStandard;
+  /*&:hover {
+    padding: 0 6px;
+    border-radius: 6px;
+    background: transparentize($bg, 0.5);
+  }*/
+}
+
+.barWifiIcon {
+  color: $fg;
+  //margin: 0 3px;
+  &.off {
+    color: darken($fg, 36%);
+  }
+}
+
+.barBluetoothIcon {
+  color: $fg;
+  margin-left: 3px;
+  &.off {
+    color: darken($fg, 36%);
+  }
+}
+
+.tray {
+  margin-right: 6px;
+  &Icon {
+    margin: 0 1px;
+  }
+  &Icons {
+    margin-left: 6px;
+  }
+  &Chevron {
+    font-family: $iconFont;
+    font-weight: 500;
+  }
+}
+
+.bar {
+  font-family: $font;
+}

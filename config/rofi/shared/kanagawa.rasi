@@ -1,0 +1,17 @@
+/**
+ *
+ * Author : myigita
+ * Github : @myigita
+ * 
+ * Colors
+ **/
+
+* {
+    background:     #1F1F28FF;
+    background-alt: #2D4F67FF;
+    foreground:     #DCD7BAFF;
+    selected:       #72A7BCFF;
+    active:         #C8C093FF;
+    urgent:         #C8C093FF;
+
+}

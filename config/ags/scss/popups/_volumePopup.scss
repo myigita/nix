@@ -1,0 +1,27 @@
+.volumePopup {
+  color: $fg;
+  margin: 0 6px 0 0;
+  padding: 3px;
+  border-radius: 24px;
+  background: $c0;
+}
+
+.volPopupIcon {
+  font-family: $iconFont;
+  margin: 3px 0 3px 0;
+}
+
+.volPopupBar {
+  margin: 3px 0;
+  min-height: 120px;
+  & trough {
+    min-width: 0.5rem;
+    border-radius: 24px;
+    background: transparentize($c4, 0.5);
+  }
+  & highlight {
+    min-height: 0.5rem;
+    border-radius: 24px;
+    background: $c4;
+  }
+}

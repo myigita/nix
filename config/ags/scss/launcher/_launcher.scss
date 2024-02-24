@@ -1,0 +1,23 @@
+.launcher {
+  font-family: $font;
+  background: $c0;
+}
+
+.launcherEntry {
+  background: $bg;
+}
+
+.launcherApp {
+  &:focus {
+    background: $bg;
+  }
+}
+
+.launcherItem {
+}
+
+.launcherItemTtitle {
+}
+
+.launcherItemIcon {
+}

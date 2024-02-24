@@ -1,0 +1,22 @@
+*:not(selection):not(tooltip) {
+  all: unset;
+}
+
+// Colors
+@import "colors";
+
+// Vars
+$font: Roboto;
+$monoFont: RobotoMono;
+$iconFont: SymbolsNerdFontMono;
+$materialStandard: cubic-bezier(0.2, 0, 0, 1);
+$materialDecel: cubic-bezier(0, 0, 0, 1);
+$materialAccel: cubic-bezier(0.3, 0, 1, 1);
+$font_size: 16px;
+
+// Components
+@import "bar/bar";
+@import "controlPanel/controlPanel";
+@import "launcher/launcher";
+@import "popups/popups";
+@import "terminal/terminal";
