@@ -107,6 +107,7 @@
 	dunst
 	libnotify
 	gtk3
+  swayidle
   ];
 
 
