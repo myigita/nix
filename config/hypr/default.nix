@@ -15,7 +15,8 @@ monitor=,preferred,auto,1
 
 # Execute your favorite apps at launch
 # exec-once = waybar & hyprpaper & firefox
-exec-once = swww init & waybar -c /shared/nix/config/waybar/config -s /shared/nix/config/waybar/style.css & nm-applet & megasync
+exec-once = waybar -c /shared/nix/config/waybar/config -s /shared/nix/config/waybar/style.css & nm-applet & megasync
+exec-once = swww init & swww img /shared/nix/wallpapers/kanagawa2.png
 
 # Source a file (multi-file configs)
 # source = ~/.config/hypr/myColors.conf
@@ -132,7 +133,8 @@ misc {
 $mainMod = SUPER
 
 # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-bind = $mainMod, return, exec, kitty
+bind = $mainMod, return, fullscreen, 0
+bind = $mainMod, E, exec, kitty
 bind = $mainMod, Q, killactive, 
 bind = $mainMod, M, exit, 
 bind = $mainMod, N, exec, nautilus 

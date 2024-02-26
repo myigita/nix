@@ -1,5 +1,15 @@
 { config, pkgs, lib, ... }:
 
+let
+  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
+    export __NV_PRIME_RENDER_OFFLOAD=1
+    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export __VK_LAYER_NV_optimus=NVIDIA_only
+    exec "$@"
+  '';
+in
+
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -71,6 +81,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.nvidia.acceptLicense = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -98,6 +109,10 @@
 	blueman
 	lshw # for nvidia optimus shit idk
   networkmanagerapplet
+  vulkan-tools
+  glxinfo
+  bumblebee
+  mesa
 
   # DE
 	hyprland
@@ -108,6 +123,7 @@
 	libnotify
 	gtk3
   swayidle
+  nvidia-offload
   ];
 
 
@@ -140,12 +156,20 @@
 	environment.sessionVariables = {
 		WLR_NO_HARDWARE_CURSORS = "1";
 		NIXOS_OZONE_WL = "1";
+    NIX_LD = "/run/current-system/sw/share/nix-ld/lib/ld.so";
+    NIX_LD_LIBRARY_PATH = "/run/current-system/sw/share/nix-ld/lib";
 	};
 
 	hardware.opengl = {
 		enable = true;
 		driSupport = true;
-    		driSupport32Bit = true;
+    driSupport32Bit = true;
+    extraPackages = with pkgs; [ 
+      vulkan-loader 
+      vulkan-validation-layers 
+      vulkan-extension-layer 
+      vulkan-tools 
+    ];
 	};
 
 	services.xserver.videoDrivers = ["nvidia"];
@@ -153,7 +177,7 @@
 	hardware.nvidia = {
 		modesetting.enable = true;
 
-		powerManagement.enable = false;
+		powerManagement.enable = true;
 		# Fine-grained power management. Turns off GPU when not in use.
 		# Experimental and only works on modern Nvidia GPUs (Turing or newer).
 		powerManagement.finegrained = false;
@@ -178,6 +202,7 @@
 			enable = true;
 			enableOffloadCmd = true;
 		};
+    # sync.enable = true;
 		# Make sure to use the correct Bus ID values for your system!
 		intelBusId = "PCI:0:2:0";
 		nvidiaBusId = "PCI:1:0:0";
@@ -208,5 +233,10 @@
     "freeimage-unstable-2021-11-01"
   ];
   
-
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    # gamescopeSession.enable = true;
+  };
 }

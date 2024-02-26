@@ -11,7 +11,6 @@
 
   home.packages = with pkgs; [
     #yigit
-    steam # gaming
     ani-cli # anime
     ticktick # task manager
     path-of-building # path of building
