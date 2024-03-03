@@ -44,7 +44,17 @@
 
     # LunarVim
     gnumake
-    python3Full
+    (python311.withPackages (ps: with ps; [
+      numpy # these two are
+      scipy # probably redundant to pandas
+      jupyterlab
+      pandas
+      statsmodels
+      scikitlearn
+      openai
+      pip
+      pip
+    ]))
     nodejs_21
     cargo
     ripgrep
@@ -65,6 +75,11 @@
     papirus-icon-theme
     firefox
     racket # //TODO REMOVE 
+    pkg-config
+    openssl
+    rustc
+    calibre
+    ollama
   ];
 
   # Define common programs and settings here

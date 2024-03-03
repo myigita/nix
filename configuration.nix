@@ -124,6 +124,10 @@ in
 	gtk3
   swayidle
   nvidia-offload
+  openssl
+  openssl.dev
+  pkg-config
+  rustc
   ];
 
 
@@ -158,6 +162,7 @@ in
 		NIXOS_OZONE_WL = "1";
     NIX_LD = "/run/current-system/sw/share/nix-ld/lib/ld.so";
     NIX_LD_LIBRARY_PATH = "/run/current-system/sw/share/nix-ld/lib";
+    PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
 	};
 
 	hardware.opengl = {
