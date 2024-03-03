@@ -111,14 +111,14 @@ in
   networkmanagerapplet
   vulkan-tools
   glxinfo
-  bumblebee
+  # bumblebee
   mesa
 
   # DE
 	hyprland
 	swww
 	waybar
-	eww-wayland
+	eww
 	dunst
 	libnotify
 	gtk3
