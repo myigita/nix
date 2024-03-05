@@ -53,7 +53,6 @@
       scikitlearn
       openai
       pip
-      pip
     ]))
     nodejs_21
     cargo
@@ -61,7 +60,7 @@
     neovim
     lunarvim
 
-    # obsidian # note taking // TODO choose between appimage and native
+    obsidian # note taking
 
     espanso-wayland # fucking shit
 
@@ -80,6 +79,7 @@
     rustc
     calibre
     ollama
+    ocrmypdf
   ];
 
   # Define common programs and settings here
