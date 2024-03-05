@@ -7,6 +7,7 @@
     extraConfig = ''
 # Custom
 
+
 # See https://wiki.hyprland.org/Configuring/Monitors/
 monitor=,preferred,auto,1
 
@@ -15,8 +16,13 @@ monitor=,preferred,auto,1
 
 # Execute your favorite apps at launch
 # exec-once = waybar & hyprpaper & firefox
-exec-once = waybar -c /shared/nix/homemanager/waybar/config -s /shared/nix/homemanager/waybar/style.css & nm-applet & megasync
+exec-once = nm-applet
+exec-once = waybar -c /shared/nix/homemanager/waybar/config -s /shared/nix/homemanager/waybar/style.css
 exec-once = swww init & swww img /shared/nix/wallpapers/kanagawa2.png
+exec-once = megasync
+
+# windowrulev2 = float, class:.* # float as default
+windowrulev2 = float,class:(megasync)
 
 # Source a file (multi-file configs)
 # source = ~/.config/hypr/myColors.conf

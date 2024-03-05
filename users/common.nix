@@ -3,11 +3,20 @@
 {
   
   imports = [
+    # Hyprland
     inputs.hyprland.homeManagerModules.default
-    # ../homemanager/hypr # points to ./hypr/default.nix
+    ../homemanager/hypr # points to ./hypr/default.nix
+
+    # Espanso
+    ../homemanager/espanso
   ];
-  
+
+  programs.espanso.enable = true;
+
   home.packages = with pkgs; [
+    # espanso-wayland # fucking shit
+    gotop
+    chromium
     ncspot # spotify cli
     fzf # fuzzy finder
     tldr # man but better
@@ -62,7 +71,6 @@
 
     obsidian # note taking
 
-    espanso-wayland # fucking shit
 
     libsForQt5.kdenlive # video editor
     godot_4 # game motor
@@ -155,6 +163,7 @@
         upd="cd /shared/nix && nix flake update && sudo nixos-rebuild switch --flake /shared/nix/";
         nswitch="sudo nixos-rebuild switch --flake /shared/nix/";
         dir="dir --color";
+        # gitbup="git add . && git commit -m '' && git push -u origin main";
     };
     shellInit = ''
       starship init fish | source

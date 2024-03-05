@@ -14,8 +14,9 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      # ./nixos/hyprland.nix
-      ./nixos/gnome.nix
+      ./nixos/hyprland.nix
+      # ./nixos/gnome.nix
+      # ./nixos/kde.nix
     ];
 # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -131,7 +132,6 @@ in
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
   system.stateVersion = "23.11"; # Did you read the comment?
 
 
@@ -218,7 +218,7 @@ in
   powerManagement.enable = true;
   services.thermald.enable = true;
   services.tlp = {
-    enable = true;
+    # enable = true; # TODO doesnt work with gnome?
     settings = {
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
@@ -237,4 +237,6 @@ in
 
     };
   };
+
+  services.flatpak.enable = true;
 }
