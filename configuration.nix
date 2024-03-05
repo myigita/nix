@@ -14,6 +14,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./nixos/hyprland.nix
     ];
 # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -114,17 +115,11 @@ in
   rustc
 
   # DE
-	xdg-desktop-portal-gtk
-	xdg-desktop-portal-hyprland
-	hyprland
-	swww
-	waybar
-	eww
-	dunst
-	libnotify
-  swayidle
 
   ];
+
+  # Hyprland
+
 
 
   # Enable the OpenSSH daemon.
@@ -138,6 +133,7 @@ in
 
   system.stateVersion = "23.11"; # Did you read the comment?
 
+
 	# Custom
 	hardware.bluetooth.enable = true;
 	hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
@@ -147,10 +143,6 @@ in
 
 	# Hyprland & Nvidia
 
-	programs.hyprland = {
-		enable = true;
-		xwayland.enable = true;
-	};
 
 	environment.sessionVariables = {
 		WLR_NO_HARDWARE_CURSORS = "1";
@@ -194,8 +186,6 @@ in
 		package = config.boot.kernelPackages.nvidiaPackages.stable;
 	};
 
-	xdg.portal.enable = true;
-	xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
 	hardware.nvidia.prime = {
 		offload = {
@@ -212,22 +202,6 @@ in
 		noto-fonts
  		(nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
 	];
-
-  
-  services.greetd = {
-    enable = true;
-    restart = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
-        user = "yigit";
-      };
-     };
-  };
-
-  security.pam.services.swaylock = { 
-  };
-
 
   nixpkgs.config.permittedInsecurePackages = [
     "freeimage-unstable-2021-11-01"

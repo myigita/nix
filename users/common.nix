@@ -4,7 +4,7 @@
   
   imports = [
     inputs.hyprland.homeManagerModules.default
-    ../config/hypr # points to ./hypr/default.nix
+    ../homemanager/hypr # points to ./hypr/default.nix
   ];
   
   home.packages = with pkgs; [
@@ -106,7 +106,7 @@
     };
     extraConfig =
     ''
-      include = /shared/nix/config/kitty/kanagawa.conf;
+      include = /shared/nix/homemanager/kitty/kanagawa.conf;
       background #1F1F28
       foreground #DCD7BA
       selection_background #2D4F67
