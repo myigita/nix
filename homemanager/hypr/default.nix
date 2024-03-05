@@ -15,7 +15,7 @@ monitor=,preferred,auto,1
 
 # Execute your favorite apps at launch
 # exec-once = waybar & hyprpaper & firefox
-exec-once = waybar -c /shared/nix/config/waybar/config -s /shared/nix/config/waybar/style.css & nm-applet & megasync
+exec-once = waybar -c /shared/nix/homemanager/waybar/config -s /shared/nix/homemanager/waybar/style.css & nm-applet & megasync
 exec-once = swww init & swww img /shared/nix/wallpapers/kanagawa2.png
 
 # Source a file (multi-file configs)
@@ -141,11 +141,11 @@ bind = $mainMod, N, exec, nautilus
 bind = $mainMod, V, togglefloating, 
 # bind = $mainMod, R, exec, wofi -ImGi --show drun
 # bind = $mainMod, R, exec, rofi -show drun -show-icons
-bind = $mainMod, R, exec, rofi -show drun -theme /shared/nix/config/rofi/style-1.rasi
+bind = $mainMod, R, exec, rofi -show drun -theme /shared/nix/homemanager/rofi/style-1.rasi
 bind = $mainMod, P, pseudo, # dwindle
 # bind = $mainMod, J, togglesplit, # dwindle
 bind = $mainMod, F, fullscreen, 1
-bind = $mainMod, escape, exec, sh /shared/nix/config/rofi/powermenu.sh 
+bind = $mainMod, escape, exec, sh /shared/nix/homemanager/rofi/powermenu.sh 
 # bind = $mainMod, L, exec, swaylock -i /shared/nix/wallpapers/redrose.jpg
 # bind = $mainMod, escape, exec, swaylock -i /shared/nix/wallpapers/redrose.jpg
 

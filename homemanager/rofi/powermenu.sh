@@ -10,7 +10,7 @@
 ## style-1   style-2   style-3   style-4   style-5
 
 # Current Theme
-dir="/shared/nix/config/rofi/"
+dir="/shared/nix/homemanager/rofi/"
 # dir="$HOME/.config/rofi/powermenu/type-1"
 theme='power-style-1'
 
@@ -32,7 +32,7 @@ rofi_cmd() {
 	rofi -dmenu \
 		-p "$host" \
 		-mesg "Uptime: $uptime" \
-		-theme /shared/nix/config/rofi/power-style-1.rasi
+		-theme /shared/nix/homemanager/rofi/power-style-1.rasi
 }
 
 # Confirmation CMD
