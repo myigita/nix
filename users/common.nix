@@ -4,7 +4,7 @@
   
   imports = [
     inputs.hyprland.homeManagerModules.default
-    ../homemanager/hypr # points to ./hypr/default.nix
+    # ../homemanager/hypr # points to ./hypr/default.nix
   ];
   
   home.packages = with pkgs; [
@@ -154,6 +154,7 @@
     shellAliases = {
         upd="cd /shared/nix && nix flake update && sudo nixos-rebuild switch --flake /shared/nix/";
         nswitch="sudo nixos-rebuild switch --flake /shared/nix/";
+        dir="dir --color";
     };
     shellInit = ''
       starship init fish | source

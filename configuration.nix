@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 
 let
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
@@ -14,7 +14,8 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./nixos/hyprland.nix
+      # ./nixos/hyprland.nix
+      ./nixos/gnome.nix
     ];
 # Bootloader.
   boot.loader.systemd-boot.enable = true;
