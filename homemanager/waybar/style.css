@@ -58,6 +58,8 @@ tooltip {
 #pulseaudio,
 #network, 
 #backlight,
+#custom-notification,
+#tray,
 #battery {
 	background: rgba(26, 27, 38, 0.4);
 	padding: 0 10px;

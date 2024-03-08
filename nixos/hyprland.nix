@@ -30,9 +30,10 @@
     swww
     waybar
     eww
-    dunst
-    libnotify
-    swayidle
+    swaynotificationcenter
+    # dunst
+    # libnotify
+    hypridle
   ];
 
   services.greetd = {

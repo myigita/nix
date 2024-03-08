@@ -7,7 +7,6 @@
     extraConfig = ''
 # Custom
 
-
 # See https://wiki.hyprland.org/Configuring/Monitors/
 monitor=,preferred,auto,1
 
@@ -19,10 +18,13 @@ monitor=,preferred,auto,1
 exec-once = nm-applet
 exec-once = waybar -c /shared/nix/homemanager/waybar/config -s /shared/nix/homemanager/waybar/style.css
 exec-once = swww init & swww img /shared/nix/wallpapers/kanagawa2.png
+exec-once = hypridle --config /shared/nix/homemanager/hypr/hypridle.conf
+exec-once = lxqt-policykit-agent
 exec-once = megasync
+exec-once = blueman 
 
 # windowrulev2 = float, class:.* # float as default
-windowrulev2 = float,class:(megasync)
+windowrulev2 = float,class:(MEGAsync),tite:(MEGAsync)
 
 # Source a file (multi-file configs)
 # source = ~/.config/hypr/myColors.conf
@@ -114,7 +116,7 @@ master {
 
 gestures {
     # See https://wiki.hyprland.org/Configuring/Variables/ for more
-    workspace_swipe = off
+    workspace_swipe = true 
 }
 
 misc {
@@ -206,6 +208,7 @@ bind =, xf86audioraisevolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
 bind =, xf86audiolowervolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
 
 bind =, Print, exec, hyprshot -m region -o /home/yigit/Pictures/Screenshots/
+
     '';
   };
 }

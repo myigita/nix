@@ -10,6 +10,7 @@
     };
 
     hyprland.url = "github:hyprwm/Hyprland";
+    hypridle.url = "github:hyprwm/hypridle";
 
     # megasync = {
     #   url = "github:meganz/MEGAsync";
@@ -18,7 +19,7 @@
 
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, hyprland, hypridle, ... }@inputs: 
   # outputs = { self, nixpkgs, home-manager, megasync, ... }@inputs: 
   {
     nixosConfigurations.squid = nixpkgs.lib.nixosSystem {

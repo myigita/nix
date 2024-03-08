@@ -67,7 +67,7 @@ in
   users.users.yigit = {
     isNormalUser = true;
     description = "yigit";
-    extraGroups = [ "networkmanager" "wheel" "input"];
+    extraGroups = [ "networkmanager" "wheel" "input" "vboxusers"];
   };
 
  users.users.f0ss = {
@@ -115,14 +115,12 @@ in
   openssl.dev
   pkg-config
   rustc
-
-  # DE
+  wl-clipboard
+  xorg.xrdb
+  lxqt.lxqt-policykit
+  # libsForQt5.polkit-kde-agent
 
   ];
-
-  # Hyprland
-
-
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
@@ -239,4 +237,26 @@ in
   };
 
   services.flatpak.enable = true;
+
+  security.polkit.enable = true;
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+      if (
+        subject.isInGroup("users")
+          && (
+            action.id == "org.freedesktop.login1.reboot" ||
+            action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+            action.id == "org.freedesktop.login1.power-off" ||
+            action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+          )
+        )
+      {
+        return polkit.Result.YES;
+      }
+    })
+  '';
+
+   virtualisation.virtualbox.host.enable = true;
+   users.extraGroups.vboxusers.members = [ "yigit" ];
+   virtualisation.virtualbox.guest.enable = true;
 }

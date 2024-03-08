@@ -14,6 +14,8 @@
   programs.espanso.enable = true;
 
   home.packages = with pkgs; [
+    warp-terminal
+    zoxide
     # espanso-wayland # fucking shit
     gotop
     chromium
@@ -45,7 +47,7 @@
     kitty # terminal emulator
     libsForQt5.qt5.qtwayland # qt wayland
     # qt6Packages.sddm
-    wl-clipboard # clipboard
+    # wl-clipboard # clipboard
     mpd # music player
     pavucontrol # audio control
     rofi-wayland # app launcher
