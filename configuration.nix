@@ -13,8 +13,8 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      # ./nixos/hyprland.nix # wayland
-      ./nixos/gnome.nix
+      ./nixos/hyprland.nix # wayland
+      # ./nixos/gnome.nix
       # ./nixos/kde.nix
     ];
 # Bootloader.

@@ -31,10 +31,8 @@
     waybar
     eww
     swaynotificationcenter
-    # dunst
-    # libnotify
-    hypridle
     swaylock # lockscreen
+    swayidle
     rofi-wayland # app launcher
     rofi-calc # calculator for rofi doesnt work tho
 

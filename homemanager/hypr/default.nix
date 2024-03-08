@@ -16,6 +16,7 @@ monitor=,preferred,auto,1
 # Execute your favorite apps at launch
 # exec-once = waybar & hyprpaper & firefox
 exec-once = nm-applet
+exec-once = swaync -s /shared/nix/homemanager/swaytools/swayncStyle.css -c /shared/nix/homemanager/swaytools/swayncConfig.json
 exec-once = waybar -c /shared/nix/homemanager/waybar/config -s /shared/nix/homemanager/waybar/style.css
 exec-once = swww init & swww img /shared/nix/wallpapers/kanagawa2.png
 exec-once = hypridle --config /shared/nix/homemanager/hypr/hypridle.conf

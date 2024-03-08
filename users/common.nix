@@ -5,13 +5,13 @@
   imports = [
     # Hyprland
     # inputs.hyprland.homeManagerModules.default
-    # ../homemanager/hypr # points to ./hypr/default.nix # wayland
+    ../homemanager/hypr # points to ./hypr/default.nix # wayland
 
     # Espanso
     # ../homemanager/espanso
 
     # Gnome Settings
-    ../homemanager/gnome
+    # ../homemanager/gnome
   ];
 
   # programs.espanso.enable = true;
