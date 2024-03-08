@@ -5,8 +5,7 @@ let
     export __NV_PRIME_RENDER_OFFLOAD=1
     export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
     export __GLX_VENDOR_LIBRARY_NAME=nvidia
-    export __VK_LAYER_NV_optimus=NVIDIA_only
-    exec "$@"
+    export __VK_LAYER_NV_optimus=NVIDIA_only exec "$@"
   '';
 in
 
@@ -138,11 +137,14 @@ in
 	hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
 	services.blueman.enable = true;
 
-	nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    auto-optimise-store = true;
+  };
 
 	environment.sessionVariables = {
-		# WLR_NO_HARDWARE_CURSORS = "1"; # For wayland
-		# NIXOS_OZONE_WL = "1"; # For wayland
+		WLR_NO_HARDWARE_CURSORS = "1"; # For wayland
+		NIXOS_OZONE_WL = "1"; # For wayland
     NIX_LD = "/run/current-system/sw/share/nix-ld/lib/ld.so";
     NIX_LD_LIBRARY_PATH = "/run/current-system/sw/share/nix-ld/lib";
     PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
@@ -179,16 +181,16 @@ in
 		nvidiaSettings = true;
 
 		# Optionally, you may need to select the appropriate driver version for your specific GPU.
-		package = config.boot.kernelPackages.nvidiaPackages.stable;
+		package = config.boot.kernelPackages.nvidiaPackages.beta;
 	};
 
 
-	hardware.nvidia.prime = {
-		offload = {
-			enable = true;
-			enableOffloadCmd = true;
-		};
-    # sync.enable = true;
+	hardware.nvidia.prime = { # //TODO
+		# offload = {
+		# 	enable = true;
+		# 	enableOffloadCmd = true;
+		# };
+    sync.enable = true;
 		# Make sure to use the correct Bus ID values for your system!
 		intelBusId = "PCI:0:2:0";
 		nvidiaBusId = "PCI:1:0:0";
@@ -198,10 +200,6 @@ in
 		noto-fonts
  		(nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
 	];
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "freeimage-unstable-2021-11-01"
-  ];
   
   programs.steam = {
     enable = true;
@@ -235,9 +233,11 @@ in
 
   services.flatpak.enable = true;
 
-  # Wayland stuff
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "yigit" ];
+  virtualisation.virtualbox.guest.enable = true;
 
-   virtualisation.virtualbox.host.enable = true;
-   users.extraGroups.vboxusers.members = [ "yigit" ];
-   virtualisation.virtualbox.guest.enable = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "freeimage-unstable-2021-11-01"
+  ];
 }

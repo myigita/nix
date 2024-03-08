@@ -4,7 +4,7 @@
   
   imports = [
     # Hyprland
-    inputs.hyprland.homeManagerModules.default
+    # inputs.hyprland.homeManagerModules.default
     # ../homemanager/hypr # points to ./hypr/default.nix # wayland
 
     # Espanso
@@ -14,6 +14,7 @@
   # programs.espanso.enable = true;
 
   home.packages = with pkgs; [
+    libsForQt5.qt5.qtwayland # qt wayland
     zoxide
     gotop
     chromium

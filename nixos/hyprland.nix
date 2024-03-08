@@ -35,7 +35,6 @@
     # libnotify
     hypridle
     swaylock # lockscreen
-    libsForQt5.qt5.qtwayland # qt wayland
     rofi-wayland # app launcher
     rofi-calc # calculator for rofi doesnt work tho
 
