@@ -7,15 +7,18 @@
     # displayManager.gdm.wayland = false;
     desktopManager.gnome.enable = true;
   };
-   
+
+  programs.dconf.enable = true;
+
   environment.systemPackages = with pkgs; [ 
     # xdg-desktop-portal-gtk
     gnomeExtensions.appindicator 
     gnome.adwaita-icon-theme 
-    chromium
     espanso-wayland
     rustdesk
+    gnome-extension-manager
   ];
+
   environment.gnome.excludePackages = (with pkgs; [
     xdg-desktop-portal-gnome
   #   xdg-desktop-portal-gtk

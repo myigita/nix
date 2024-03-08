@@ -9,11 +9,15 @@
 
     # Espanso
     # ../homemanager/espanso
+
+    # Gnome Settings
+    ../homemanager/gnome
   ];
 
   # programs.espanso.enable = true;
 
   home.packages = with pkgs; [
+    rustdesk
     libsForQt5.qt5.qtwayland # qt wayland
     zoxide
     gotop
@@ -226,7 +230,18 @@
     };
     font = {
       name = "JetBrainsMono Nerd Font";
-      size = 13;
+      size = 14;
+    };
+    gtk3.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+
+    gtk4.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
     };
   };
 

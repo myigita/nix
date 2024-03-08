@@ -18,8 +18,16 @@ in
       # ./nixos/kde.nix
     ];
 # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+    # grub = {
+    #   enable = true;
+    #   devices = [ "nodev" ]; # "nodev" is the default value
+    #   efiSupport = true;
+    #   useOSProber = true;
+    # };
+  };
 
   networking.hostName = "squid"; 
 
