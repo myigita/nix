@@ -1,8 +1,7 @@
 # default.nix
 { config, inputs, pkgs, ... }:
 {
-  wayland.windowManager.hyprland = {
-    enable = true;
+  wayland.windowManager.hyprland = { enable = true;
     systemd.enable = true;
     extraConfig = ''
 # Custom
@@ -170,7 +169,7 @@ bind = $mainMod, P, pseudo, # dwindle
 # bind = $mainMod, J, togglesplit, # dwindle
 bind = $mainMod, F, fullscreen, 1
 bind = $mainMod, escape, exec, sh /shared/nix/homemanager/rofi/powermenu.sh 
-bind = $mainMod, L, exec, swaylock -i /shared/nix/wallpapers/redrose.jpg
+# bind = $mainMod, L, exec, swaylock -i /shared/nix/wallpapers/redrose.jpg
 # bind = $mainMod, escape, exec, swaylock -i /shared/nix/wallpapers/redrose.jpg
 
 # Move focus with mainMod + arrow keys
@@ -210,6 +209,10 @@ bind = $mainMod SHIFT, S, movetoworkspace, special:magic
 # Scroll through existing workspaces with mainMod + scroll
 bind = $mainMod, mouse_down, workspace, e+1
 bind = $mainMod, mouse_up, workspace, e-1
+
+# Scroll through existing workspaces with mainMod + scroll
+binde = $mainMod, Tab, workspace, e+1
+binde = $mainMod, Shift_L, workspace, e-1
 
 # Move/resize windows with mainMod + LMB/RMB and dragging
 bindm = $mainMod, mouse:272, movewindow
