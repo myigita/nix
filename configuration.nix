@@ -14,8 +14,8 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./nixos/hyprland.nix
-      # ./nixos/gnome.nix
+      # ./nixos/hyprland.nix # wayland
+      ./nixos/gnome.nix
       # ./nixos/kde.nix
     ];
 # Bootloader.
@@ -140,12 +140,9 @@ in
 
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-	# Hyprland & Nvidia
-
-
 	environment.sessionVariables = {
-		WLR_NO_HARDWARE_CURSORS = "1";
-		NIXOS_OZONE_WL = "1";
+		# WLR_NO_HARDWARE_CURSORS = "1"; # For wayland
+		# NIXOS_OZONE_WL = "1"; # For wayland
     NIX_LD = "/run/current-system/sw/share/nix-ld/lib/ld.so";
     NIX_LD_LIBRARY_PATH = "/run/current-system/sw/share/nix-ld/lib";
     PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
@@ -238,6 +235,7 @@ in
 
   services.flatpak.enable = true;
 
+  # Wayland stuff
   security.polkit.enable = true;
   security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {

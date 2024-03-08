@@ -5,18 +5,16 @@
   imports = [
     # Hyprland
     inputs.hyprland.homeManagerModules.default
-    ../homemanager/hypr # points to ./hypr/default.nix
+    # ../homemanager/hypr # points to ./hypr/default.nix # wayland
 
     # Espanso
-    ../homemanager/espanso
+    # ../homemanager/espanso
   ];
 
-  programs.espanso.enable = true;
+  # programs.espanso.enable = true;
 
   home.packages = with pkgs; [
-    warp-terminal
     zoxide
-    # espanso-wayland # fucking shit
     gotop
     chromium
     ncspot # spotify cli
@@ -29,7 +27,6 @@
     tmux # terminal multiplexer
     brightnessctl # control screen brightness
     appimage-run # run appimages
-    swaylock # lockscreen
     nix-tree # dependancy tree
     ncdu # disk usage
     hyprshot # screenshot
@@ -45,13 +42,10 @@
     gnome.nautilus # file manager // TODO CHOOSE ONE
     vivaldi # web browser
     kitty # terminal emulator
-    libsForQt5.qt5.qtwayland # qt wayland
     # qt6Packages.sddm
     # wl-clipboard # clipboard
     mpd # music player
     pavucontrol # audio control
-    rofi-wayland # app launcher
-    rofi-calc # calculator for rofi doesnt work tho
 
     # LunarVim
     gnumake

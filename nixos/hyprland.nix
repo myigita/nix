@@ -34,6 +34,13 @@
     # dunst
     # libnotify
     hypridle
+    swaylock # lockscreen
+    libsForQt5.qt5.qtwayland # qt wayland
+    rofi-wayland # app launcher
+    rofi-calc # calculator for rofi doesnt work tho
+
+    #other
+    # espanso-wayland # fucking shit
   ];
 
   services.greetd = {
@@ -78,4 +85,21 @@
 #       gnome-online-accounts.enable = true;
 #     };
 #   };
+  security.polkit.enable = true;
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+      if (
+        subject.isInGroup("users")
+          && (
+            action.id == "org.freedesktop.login1.reboot" ||
+            action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+            action.id == "org.freedesktop.login1.power-off" ||
+            action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+          )
+        )
+      {
+        return polkit.Result.YES;
+      }
+    })
+  '';
 }
