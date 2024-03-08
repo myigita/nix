@@ -7,6 +7,10 @@
 @define-color comment rgb(162, 164, 98);
 /* @define-color accent rgba(189, 147, 249, 0.8); */
 
+* {
+    font-size: 13px; /* Adjust the size as per your preference */
+}
+
 .notification-row {
   transition: all 200ms ease;
   outline: none;
@@ -95,12 +99,13 @@
 
 .notification-default-action,
 .notification-action {
-  padding: 4px;
+  padding: 0px;
   margin: 0;
   box-shadow: none;
   background: @current-line;
   border: 2px solid @accent;
   color: @foreground;
+  font-size: 10px;
 }
 
 .notification-default-action:hover,
@@ -145,7 +150,7 @@
 }
 
 .summary {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   background: transparent;
   color: @foreground;
@@ -153,7 +158,7 @@
 }
 
 .time {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   background: transparent;
   color: @foreground;
@@ -162,7 +167,7 @@
 }
 
 .body {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: normal;
   background: transparent;
   color: @foreground;

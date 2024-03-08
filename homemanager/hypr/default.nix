@@ -10,22 +10,35 @@
 # See https://wiki.hyprland.org/Configuring/Monitors/
 monitor=,preferred,auto,1
 
+# windowrulev2 = float, class:.* # float as default
+windowrulev2 = float, class:^(MEGAsync)$, title:^(MEGAsync)$
+# windowrulev2 = float,title:^(kitty)$
+
+#swaync
+# layerrule = blur, swaync-control-center
+# layerrule = blur, swaync-notification-window
+
+# layerrule = ignorezero, swaync-control-center
+# layerrule = ignorezero, swaync-notification-window
+
+# layerrule = ignorealpha 0.5, swaync-control-center
+# layerrule = ignorealpha 0.5, swaync-notification-window
 
 # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 
 # Execute your favorite apps at launch
 # exec-once = waybar & hyprpaper & firefox
 exec-once = nm-applet
-exec-once = swaync -s /shared/nix/homemanager/swaytools/swayncStyle.css -c /shared/nix/homemanager/swaytools/swayncConfig.json
-exec-once = waybar -c /shared/nix/homemanager/waybar/config -s /shared/nix/homemanager/waybar/style.css
+exec-once = swaync -s /shared/nix/homemanager/swaytools/swayncStyle.css -c /shared/nix/homemanager/swaytools/swayncConfig.json exec-once = waybar -c /shared/nix/homemanager/waybar/config -s /shared/nix/homemanager/waybar/style.css
 exec-once = swww init & swww img /shared/nix/wallpapers/kanagawa2.png
 exec-once = hypridle --config /shared/nix/homemanager/hypr/hypridle.conf
 exec-once = lxqt-policykit-agent
-exec-once = megasync
+exec-once = swayidle -w timeout 300 "$lockcommand" timeout 300 "hyprctl dispatch dpms off" resume "hyprctl dispatch dpms on && brightnessctl -r"
 exec-once = blueman 
 
-# windowrulev2 = float, class:.* # float as default
-windowrulev2 = float,class:(MEGAsync),tite:(MEGAsync)
+$lockcommand = "swaylock -i /shared/nix/wallpapers/redrose.jpg && brightnessctl set 10%"
+
+
 
 # Source a file (multi-file configs)
 # source = ~/.config/hypr/myColors.conf
@@ -118,6 +131,8 @@ master {
 gestures {
     # See https://wiki.hyprland.org/Configuring/Variables/ for more
     workspace_swipe = true 
+    workspace_swipe_numbered = true
+    # workspace_swipe_forever = true
 }
 
 misc {
@@ -155,7 +170,7 @@ bind = $mainMod, P, pseudo, # dwindle
 # bind = $mainMod, J, togglesplit, # dwindle
 bind = $mainMod, F, fullscreen, 1
 bind = $mainMod, escape, exec, sh /shared/nix/homemanager/rofi/powermenu.sh 
-# bind = $mainMod, L, exec, swaylock -i /shared/nix/wallpapers/redrose.jpg
+bind = $mainMod, L, exec, swaylock -i /shared/nix/wallpapers/redrose.jpg
 # bind = $mainMod, escape, exec, swaylock -i /shared/nix/wallpapers/redrose.jpg
 
 # Move focus with mainMod + arrow keys
@@ -212,4 +227,6 @@ bind =, Print, exec, hyprshot -m region -o /home/yigit/Pictures/Screenshots/
 
     '';
   };
+
+
 }

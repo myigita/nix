@@ -19,9 +19,6 @@
   home.packages = with pkgs; [
     rustdesk
     libsForQt5.qt5.qtwayland # qt wayland
-    zoxide
-    gotop
-    chromium
     ncspot # spotify cli
     fzf # fuzzy finder
     tldr # man but better
@@ -29,9 +26,7 @@
     libreoffice-fresh # office suite
     libsForQt5.okular # pdf viewer
 
-    tmux # terminal multiplexer
     brightnessctl # control screen brightness
-    appimage-run # run appimages
     nix-tree # dependancy tree
     ncdu # disk usage
     hyprshot # screenshot
@@ -41,14 +36,10 @@
     neofetch # system info
     neovim # text editor
     bitwarden # password manager // TODO choose one
-    bitwarden-cli
-    megasync # cloud storage
     fish # shell
     gnome.nautilus # file manager // TODO CHOOSE ONE
     vivaldi # web browser
     kitty # terminal emulator
-    # qt6Packages.sddm
-    # wl-clipboard # clipboard
     mpd # music player
     pavucontrol # audio control
 
@@ -72,11 +63,9 @@
 
     obsidian # note taking
 
-
     libsForQt5.kdenlive # video editor
     godot_4 # game motor
     yt-dlp # youtube download
-    mpvpaper # video wallpaper
     starship # cli prompt
     ranger # file manager cli
     catppuccin-gtk
@@ -252,8 +241,11 @@
       "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
   };
 
+  services.megasync.enable = true;
+
   home.sessionVariables.GTK_THEME = config.gtk.theme.name;
   home.sessionVariables.EDITOR = "vim";
+
   # Ensure home-manager is enabled
   programs.home-manager.enable = true;
 }

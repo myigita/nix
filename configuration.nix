@@ -74,7 +74,8 @@ in
   users.users.yigit = {
     isNormalUser = true;
     description = "yigit";
-    extraGroups = [ "networkmanager" "wheel" "input" "vboxusers"];
+    extraGroups = [ "networkmanager" "wheel" "input" ];
+    # extraGroups = [ "networkmanager" "wheel" "input" "vboxusers"];
   };
 
  users.users.f0ss = {
@@ -104,7 +105,7 @@ in
   zip
   unzip
   htop
-  nwg-look
+  nwg-look # gtk settings
   sassc
   desktop-file-utils
   corefonts
@@ -241,9 +242,9 @@ in
 
   services.flatpak.enable = true;
 
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "yigit" ];
-  virtualisation.virtualbox.guest.enable = true;
+  # virtualisation.virtualbox.host.enable = true;
+  # users.extraGroups.vboxusers.members = [ "yigit" ];
+  # virtualisation.virtualbox.guest.enable = true;
 
   nixpkgs.config.permittedInsecurePackages = [
     "freeimage-unstable-2021-11-01"

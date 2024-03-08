@@ -29,7 +29,7 @@
     hyprland
     swww
     waybar
-    eww
+    # eww
     swaynotificationcenter
     swaylock # lockscreen
     swayidle
