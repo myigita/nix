@@ -28,11 +28,12 @@ windowrulev2 = float, class:^(MEGAsync)$, title:^(MEGAsync)$
 # Execute your favorite apps at launch
 # exec-once = waybar & hyprpaper & firefox
 exec-once = nm-applet
-exec-once = swaync -s /shared/nix/homemanager/swaytools/swayncStyle.css -c /shared/nix/homemanager/swaytools/swayncConfig.json exec-once = waybar -c /shared/nix/homemanager/waybar/config -s /shared/nix/homemanager/waybar/style.css
-exec-once = swww init & swww img /shared/nix/wallpapers/kanagawa2.png
+exec-once = swaync -s /shared/nix/homemanager/swaytools/swayncStyle.css -c /shared/nix/homemanager/swaytools/swayncConfig.json 
+exec-once = waybar -c /shared/nix/homemanager/waybar/config -s /shared/nix/homemanager/waybar/style.css
+exec-once = swww init & swww img /shared/nix/wallpapers/mp100black.png
 exec-once = hypridle --config /shared/nix/homemanager/hypr/hypridle.conf
 exec-once = lxqt-policykit-agent
-exec-once = swayidle -w timeout 300 "$lockcommand" timeout 300 "hyprctl dispatch dpms off" resume "hyprctl dispatch dpms on && brightnessctl -r"
+exec-once = swayidle -w timeout 300 "$lockcommand" timeout 300 "hyprctl dispatch dpms off" resume "hyprctl dispatch dpms on && brightnessctl -r" before-sleep "$lockcommand before-sleep "$lockcommand""
 exec-once = blueman 
 
 $lockcommand = "swaylock -i /shared/nix/wallpapers/redrose.jpg && brightnessctl set 10%"

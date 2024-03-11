@@ -45,15 +45,16 @@
 
     # LunarVim
     gnumake
-    (python311.withPackages (ps: with ps; [
-      numpy # these two are
-      scipy # probably redundant to pandas
-      jupyterlab
-      pandas
-      statsmodels
-      scikitlearn
+    (python3.withPackages (ps: with ps; [
+      # numpy # these two are
+      # scipy # probably redundant to pandas
+      # jupyterlab
+      # pandas
+      # statsmodels
+      # scikitlearn
       openai
       pip
+      # django
     ]))
     nodejs_21
     cargo
@@ -158,6 +159,18 @@
     shellInit = ''
       starship init fish | source
     '';
+    functions = {
+      fish_prompt = '' 
+      set -l nix_shell_info 
+        (
+          if test -n "$IN_NIX_SHELL"
+            echo -n "<nix-shell> "
+          end
+        )
+
+      echo -n -s "$nix_shell_info ~>"
+      '';
+    };
   };
 
   programs.starship = {
