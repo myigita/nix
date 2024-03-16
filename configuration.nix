@@ -74,8 +74,8 @@ in
   users.users.yigit = {
     isNormalUser = true;
     description = "yigit";
-    extraGroups = [ "networkmanager" "wheel" "input" ];
-    # extraGroups = [ "networkmanager" "wheel" "input" "vboxusers"];
+    # extraGroups = [ "networkmanager" "wheel" "input" ];
+    extraGroups = [ "networkmanager" "wheel" "input" "vboxusers"];
   };
 
  users.users.f0ss = {
@@ -131,13 +131,13 @@ in
   ];
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
   system.stateVersion = "23.11"; # Did you read the comment?
 
 
@@ -152,6 +152,7 @@ in
   };
 
 	environment.sessionVariables = {
+    RUST_BACKTRACE = "1"; # for rustdesk backtrace
 		WLR_NO_HARDWARE_CURSORS = "1"; # For wayland
 		NIXOS_OZONE_WL = "1"; # For wayland
     NIX_LD = "/run/current-system/sw/share/nix-ld/lib/ld.so";
@@ -190,16 +191,17 @@ in
 		nvidiaSettings = true;
 
 		# Optionally, you may need to select the appropriate driver version for your specific GPU.
-		package = config.boot.kernelPackages.nvidiaPackages.beta;
+		# package = config.boot.kernelPackages.nvidiaPackages.beta;
+		package = config.boot.kernelPackages.nvidiaPackages.stable;
 	};
 
 
 	hardware.nvidia.prime = { # //TODO
-		# offload = {
-		# 	enable = true;
-		# 	enableOffloadCmd = true;
-		# };
-    sync.enable = true;
+		offload = {
+			enable = true;
+			enableOffloadCmd = true;
+		};
+    # sync.enable = true;
 		# Make sure to use the correct Bus ID values for your system!
 		intelBusId = "PCI:0:2:0";
 		nvidiaBusId = "PCI:1:0:0";
@@ -249,4 +251,12 @@ in
   nixpkgs.config.permittedInsecurePackages = [
     "freeimage-unstable-2021-11-01"
   ];
+
+  boot.supportedFilesystems = [ "ntfs" ];
+
+  services.ollama.enable = true;
+  services.ollama.acceleration = "cuda";
+
+  services.rustdesk-server.enable = true;
+  services.rustdesk-server.relayIP = "45.77.136.126";
 }

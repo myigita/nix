@@ -213,7 +213,7 @@ bind = $mainMod, mouse_up, workspace, e-1
 
 # Scroll through existing workspaces with mainMod + scroll
 binde = $mainMod, Tab, workspace, e+1
-binde = $mainMod, Shift_L, workspace, e-1
+# binde = $mainMod, Shift_L, workspace, e-1
 
 # Move/resize windows with mainMod + LMB/RMB and dragging
 bindm = $mainMod, mouse:272, movewindow

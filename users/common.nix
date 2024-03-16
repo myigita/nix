@@ -22,7 +22,6 @@
     ncspot # spotify cli
     fzf # fuzzy finder
     tldr # man but better
-    # rustdesk # todo doesnt work
     libreoffice-fresh # office suite
     libsForQt5.okular # pdf viewer
 
@@ -77,7 +76,7 @@
     openssl
     rustc
     calibre
-    ollama
+    # (pkgs.ollama.override { acceleration = "cuda"; })
     ocrmypdf
   ];
 

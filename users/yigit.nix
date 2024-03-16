@@ -11,6 +11,8 @@
 
   home.packages = with pkgs; [
     #yigit
+    krita
+    gimp
     ani-cli # anime
     ticktick # task manager
     path-of-building # path of building
