@@ -11,6 +11,8 @@
 
   home.packages = with pkgs; [
     #yigit
+    flutter
+    android-studio
     krita
     gimp
     ani-cli # anime

@@ -12,10 +12,10 @@
     hyprland.url = "github:hyprwm/Hyprland";
     hypridle.url = "github:hyprwm/hypridle";
 
-    rustdesk = {
-      url = "github:rustdesk/rustdesk";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # rustdesk-git = {
+    #   url = "github:rustdesk/rustdesk";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # megasync = {
     #   url = "github:meganz/MEGAsync";
@@ -24,7 +24,7 @@
 
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, hypridle, rustdesk, ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, hyprland, hypridle, ... }@inputs: 
   # outputs = { self, nixpkgs, home-manager, megasync, ... }@inputs: 
   {
     nixosConfigurations.squid = nixpkgs.lib.nixosSystem {

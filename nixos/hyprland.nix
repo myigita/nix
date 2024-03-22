@@ -3,10 +3,12 @@
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
+    portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
 
 	xdg.portal.enable = true;
-	xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg.portal.wlr.enable = true;
+	xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-kde pkgs.xdg-desktop-portal];
 
   security.pam.services.swaylock = { 
   };
@@ -24,6 +26,7 @@
   # };
 
   environment.systemPackages = with pkgs; [
+    wayvnc # remote desktop
     xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland
     hyprland

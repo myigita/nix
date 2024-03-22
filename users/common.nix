@@ -1,5 +1,4 @@
 { config, inputs, pkgs, ... }:
-
 {
   
   imports = [
@@ -17,7 +16,10 @@
   # programs.espanso.enable = true;
 
   home.packages = with pkgs; [
-    rustdesk
+    qmk
+    notesnook
+    zoxide
+    rustdesk-flutter
     libsForQt5.qt5.qtwayland # qt wayland
     ncspot # spotify cli
     fzf # fuzzy finder
@@ -76,11 +78,107 @@
     openssl
     rustc
     calibre
-    # (pkgs.ollama.override { acceleration = "cuda"; })
     ocrmypdf
+    jetbrains.idea-community-bin
   ];
 
   # Define common programs and settings here
+
+  programs.java.enable = true;
+
+  programs.vscode = {
+    enable = true;
+    extensions = with pkgs.vscode-extensions; [
+      dracula-theme.theme-dracula
+      vscodevim.vim
+      yzhang.markdown-all-in-one
+    ];
+  };
+
+  programs.tmux = {
+    shell = "${pkgs.fish}/bin/fish";
+    enable = true;
+    mouse = true; 
+    # plugins = with pkgs;
+    #   [
+    #     tmuxPlugins.tpm
+    #     tmuxPlugins.tmux-sensible
+    #     christoomey.vim-tmux-navigator
+    #     dreamsofcode-io.catppuccin-tmux
+    #   ];
+    extraConfig = ''
+      # Start windows and panes at 1, not 0
+      set -g base-index 1
+      set -g pane-base-index 1
+      set-window-option -g pane-base-index 1
+      set-option -g renumber-windows on
+
+      # unbind ctrl+b as prefix and bind ctrl+space instead
+      unbind C-b
+      set -g prefix C-Space
+      bind C-Space send-prefix
+
+      # terminal colors
+      set-option -sa terminal-overrides ",xterm*:Tc"
+
+      # # split into cwd
+      # bind '"' split-window -v -c "#{pane_current_path}"
+      # bind % split-window -h -c "#{pane_current_path}"
+
+      # catppuccin config
+      set -g @catppuccin_flavour 'mocha'
+
+      #List of plugins
+      set -g @plugin 'tmux-plugins/tpm'
+      set -g @plugin 'tmux-plugins/tmux-sensible'
+      set -g @plugin 'christoomey/vim-tmux-navigator'
+      set -g @plugin 'dreamsofcode-io/catppuccin-tmux'
+
+      # Other examples:
+      # set -g @plugin 'github_username/plugin_name'
+      # set -g @plugin 'github_username/plugin_name#branch'
+      # set -g @plugin 'git@github.com:user/plugin'
+      # set -g @plugin 'git@bitbucket.com:user/plugin'
+
+      # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+      run '~/.tmux/plugins/tpm/tpm'
+
+      # Make split keys better
+      unbind % 
+      unbind '"'
+      bind '\' split-window -h -c '#{pane_current_path}'           
+      bind '-' split-window -v -c '#{pane_current_path}'
+
+      # Quickly move through panes with ALT+Arrow Key
+      bind -n M-Left select-pane -L
+      bind -n M-Right select-pane -R
+      bind -n M-Up select-pane -U
+      bind -n M-Down select-pane -D
+
+      # Shift arrow to switch windows
+      bind -n S-Left  previous-window
+      bind -n S-Right next-window
+
+      # r to reload config
+      unbind r
+      bind r source-file ~/.tmux.conf \; display "Reloaded tmux config!"
+
+      # Automatically set the window title
+      set-window-option -g automatic-rename off
+
+      # activity notifications
+      setw -g monitor-activity on
+      setw -g visual-activity on
+
+      # Improve terminal colors
+      set -g default-terminal "screen-256color"
+      set -ga terminal-overrides ",xterm-256color:Tc"
+
+      # Increase scrollback buffer to 10000
+      set -g history-limit 10000
+    '';
+  };
+
   programs.git = {
     enable = true;
     extraConfig = {
@@ -150,12 +248,16 @@
   programs.fish = {
     enable = true;
     shellAliases = {
-        upd="cd /shared/nix && nix flake update && sudo nixos-rebuild switch --flake /shared/nix/";
-        nswitch="sudo nixos-rebuild switch --flake /shared/nix/";
-        dir="dir --color";
+        upd="cd /shared/nix && nix flake update && sudo nixos-rebuild switch --flake /shared/nix/"; # update nixos
+        nswitch="sudo nixos-rebuild switch --flake /shared/nix/"; # nixos-rebuild switch
+        dir="dir --color"; # dir but better
+        sship="ifconfig wlp0s20f3 | grep -oE 'inet ([0-9]{1,3}\.){3}[0-9]{1,3}' | awk '{print $2}'"; # get local ip
+        ssh="ssh -i ~/.ssh/zinism-ssh-key-private"; # ssh
+        ls="ls --color -la"; # ls but better
         # gitbup="git add . && git commit -m '' && git push -u origin main";
     };
     shellInit = ''
+      zoxide init fish | source
       starship init fish | source
     '';
     functions = {

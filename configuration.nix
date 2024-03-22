@@ -53,7 +53,8 @@ in
   };
 
   # Configure console keymap
-  console.keyMap = "trq";
+  console.keyMap = "us";
+  services.xserver.xkb.layout = "us";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -97,6 +98,9 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+
+  rustdesk
+
 	# basic stuff
 	wget
 	git
@@ -192,16 +196,16 @@ in
 
 		# Optionally, you may need to select the appropriate driver version for your specific GPU.
 		# package = config.boot.kernelPackages.nvidiaPackages.beta;
-		package = config.boot.kernelPackages.nvidiaPackages.stable;
+		package = config.boot.kernelPackages.nvidiaPackages.beta;
 	};
 
 
 	hardware.nvidia.prime = { # //TODO
-		offload = {
-			enable = true;
-			enableOffloadCmd = true;
-		};
-    # sync.enable = true;
+		# offload = {
+		# 	enable = true;
+		# 	enableOffloadCmd = true;
+		# };
+    sync.enable = true;
 		# Make sure to use the correct Bus ID values for your system!
 		intelBusId = "PCI:0:2:0";
 		nvidiaBusId = "PCI:1:0:0";
@@ -257,6 +261,14 @@ in
   services.ollama.enable = true;
   services.ollama.acceleration = "cuda";
 
-  services.rustdesk-server.enable = true;
+  services.rustdesk-server.enable = true; # doesnt work yet sadge
   services.rustdesk-server.relayIP = "45.77.136.126";
+
+  virtualisation.docker.enable = true;
+  virtualisation.docker.enableNvidia = true;
+  users.extraGroups.docker.members = [ "yigit" "f0ss" "yokul" ];
+  # virtualisation.docker.rootless = {
+  #   enable = true;
+  #   setSocketVariable = true;
+  # };
 }

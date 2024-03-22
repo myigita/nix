@@ -48,7 +48,7 @@ env = XCURSOR_SIZE,24
 
 # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
 input {
-    kb_layout = tr
+    kb_layout = us
     kb_variant =
     kb_model =
     kb_options =
