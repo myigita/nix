@@ -16,10 +16,11 @@
   # programs.espanso.enable = true;
 
   home.packages = with pkgs; [
+    fastfetch
     qmk
-    notesnook
+    # notesnook
     zoxide
-    rustdesk-flutter
+    # rustdesk-flutter
     libsForQt5.qt5.qtwayland # qt wayland
     ncspot # spotify cli
     fzf # fuzzy finder
@@ -70,7 +71,7 @@
     yt-dlp # youtube download
     starship # cli prompt
     ranger # file manager cli
-    catppuccin-gtk
+    # catppuccin-gtk
     papirus-icon-theme
     firefox
     racket # //TODO REMOVE 
@@ -125,14 +126,14 @@
       # bind '"' split-window -v -c "#{pane_current_path}"
       # bind % split-window -h -c "#{pane_current_path}"
 
-      # catppuccin config
-      set -g @catppuccin_flavour 'mocha'
+      # # catppuccin config
+      # set -g @catppuccin_flavour 'mocha'
 
       #List of plugins
       set -g @plugin 'tmux-plugins/tpm'
       set -g @plugin 'tmux-plugins/tmux-sensible'
       set -g @plugin 'christoomey/vim-tmux-navigator'
-      set -g @plugin 'dreamsofcode-io/catppuccin-tmux'
+      # set -g @plugin 'dreamsofcode-io/catppuccin-tmux'
 
       # Other examples:
       # set -g @plugin 'github_username/plugin_name'
@@ -327,12 +328,12 @@
     enable = true;
     theme = {
       name = "Catppuccin-Mocha-Standard-Mauve-Dark";
-      package = pkgs.catppuccin-gtk.override {
-        accents = [ "mauve" ];
-        size = "standard";
-        tweaks = [ "black" ];
-        variant = "mocha";
-      };
+    #   package = pkgs.catppuccin-gtk.override {
+    #     accents = [ "mauve" ];
+    #     size = "standard";
+    #     tweaks = [ "black" ];
+    #     variant = "mocha";
+    #   };
     };
     iconTheme = {
       name = "Papirus-Dark";

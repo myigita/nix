@@ -53,7 +53,10 @@ in
   };
 
   # Configure console keymap
-  console.keyMap = "us";
+  console = {
+    # keyMap = "us";
+    useXkbConfig = true;
+  };
   services.xserver.xkb.layout = "us";
 
   # Enable CUPS to print documents.
@@ -271,4 +274,11 @@ in
   #   enable = true;
   #   setSocketVariable = true;
   # };
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
+
 }
