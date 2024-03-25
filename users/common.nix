@@ -1,4 +1,4 @@
-{ config, inputs, pkgs, ... }:
+{ config, pkgs, ... }:
 {
   
   imports = [
@@ -16,6 +16,11 @@
   # programs.espanso.enable = true;
 
   home.packages = with pkgs; [
+    sshfs
+    filezilla
+    google-chrome
+    flutter
+    autossh
     fastfetch
     qmk
     # notesnook
@@ -71,7 +76,7 @@
     yt-dlp # youtube download
     starship # cli prompt
     ranger # file manager cli
-    # catppuccin-gtk
+    catppuccin-gtk
     papirus-icon-theme
     firefox
     racket # //TODO REMOVE 
@@ -199,7 +204,7 @@
     settings = {
 			tab_bar_style = "fade";
 			tab_fade = "0.25 0.5 0.75 1";
-			background_opacity = "0.5";
+			background_opacity = "0.7";
     };
     extraConfig =
     ''
@@ -255,6 +260,8 @@
         sship="ifconfig wlp0s20f3 | grep -oE 'inet ([0-9]{1,3}\.){3}[0-9]{1,3}' | awk '{print $2}'"; # get local ip
         ssh="ssh -i ~/.ssh/zinism-ssh-key-private"; # ssh
         ls="ls --color -la"; # ls but better
+        hgrep="history | grep";
+        autossh="autossh -M 0 -o 'ServerAliveInterval 30' -o 'ServerAliveCountMax 3' -R 43022:localhost:22 root@45.77.136.126 -i ~/.ssh/zinism-ssh-key-private -f";
         # gitbup="git add . && git commit -m '' && git push -u origin main";
     };
     shellInit = ''
@@ -328,12 +335,12 @@
     enable = true;
     theme = {
       name = "Catppuccin-Mocha-Standard-Mauve-Dark";
-    #   package = pkgs.catppuccin-gtk.override {
-    #     accents = [ "mauve" ];
-    #     size = "standard";
-    #     tweaks = [ "black" ];
-    #     variant = "mocha";
-    #   };
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "mauve" ];
+        size = "standard";
+        tweaks = [ "black" ];
+        variant = "mocha";
+      };
     };
     iconTheme = {
       name = "Papirus-Dark";
@@ -358,9 +365,9 @@
 
   # Now symlink the `~/.config/gtk-4.0/` folder declaratively:
   xdg.configFile = {
-      "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
-      "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
-      "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
+      # "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
+      # "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
+      # "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
   };
 
   services.megasync.enable = true;
@@ -370,5 +377,36 @@
 
   # Ensure home-manager is enabled
   programs.home-manager.enable = true;
+
+  # config.programs.mosh = { # mobile shell for ssh
+  #   enable = true;
+  # };
+
+  # nixpkgs.overlays = [ # until catppuccin is merged
+  #     (final: prev: {
+  #       pythonPackagesExtensions =
+  #         prev.pythonPackagesExtensions
+  #         ++ [
+  #           (
+  #             python-final: python-prev: {
+  #               catppuccin = python-prev.catppuccin.overridePythonAttrs (oldAttrs: rec {
+  #                 version = "1.3.2";
+  #                 src = prev.fetchFromGitHub {
+  #                   owner = "catppuccin";
+  #                   repo = "python";
+  #                   rev = "refs/tags/v${version}";
+  #                   hash = "sha256-spPZdQ+x3isyeBXZ/J2QE6zNhyHRfyRQGiHreuXzzik=";
+  #                 };
+
+  #                 # can be removed next version
+  #                 disabledTestPaths = [
+  #                   "tests/test_flavour.py" # would download a json to check correctness of flavours
+  #                 ];
+  #               });
+  #             }
+  #           )
+  #         ];
+  #     })
+  #   ];
 }
 
