@@ -261,7 +261,7 @@
         ssh="ssh -i ~/.ssh/zinism-ssh-key-private"; # ssh
         ls="ls --color -la"; # ls but better
         hgrep="history | grep";
-        autossh="autossh -M 0 -o 'ServerAliveInterval 30' -o 'ServerAliveCountMax 3' -R 43022:localhost:22 root@45.77.136.126 -i ~/.ssh/zinism-ssh-key-private -f";
+        autossh_auto="autossh -M 0 -o 'ServerAliveInterval 30' -o 'ServerAliveCountMax 3' -R 43022:localhost:22 root@45.77.136.126 -i ~/.ssh/zinism-ssh-key-private -f";
         # gitbup="git add . && git commit -m '' && git push -u origin main";
     };
     shellInit = ''
