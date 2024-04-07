@@ -102,7 +102,7 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs; [
 
-  rustdesk
+  (jetbrains.plugins.addPlugins jetbrains.idea-community-bin [ "github-copilot" ])
 
 	# basic stuff
 	wget

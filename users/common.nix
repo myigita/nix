@@ -16,9 +16,9 @@
   # programs.espanso.enable = true;
 
   home.packages = with pkgs; [
-    sshfs
-    filezilla
-    google-chrome
+    # playerctl
+    # sptlrx
+    # google-chrome
     flutter
     autossh
     fastfetch
@@ -85,7 +85,7 @@
     rustc
     calibre
     ocrmypdf
-    jetbrains.idea-community-bin
+    # jetbrains.idea-community-bin
   ];
 
   # Define common programs and settings here
@@ -258,7 +258,7 @@
         nswitch="sudo nixos-rebuild switch --flake /shared/nix/"; # nixos-rebuild switch
         dir="dir --color"; # dir but better
         sship="ifconfig wlp0s20f3 | grep -oE 'inet ([0-9]{1,3}\.){3}[0-9]{1,3}' | awk '{print $2}'"; # get local ip
-        ssh="ssh -i ~/.ssh/zinism-ssh-key-private"; # ssh
+        sshi="ssh -i ~/.ssh/zinism-ssh-key-private"; # ssh
         ls="ls --color -la"; # ls but better
         hgrep="history | grep";
         autossh_auto="autossh -M 0 -o 'ServerAliveInterval 30' -o 'ServerAliveCountMax 3' -R 43022:localhost:22 root@45.77.136.126 -i ~/.ssh/zinism-ssh-key-private -f";
