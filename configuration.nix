@@ -265,8 +265,6 @@ in
   services.ollama.enable = true;
   services.ollama.acceleration = "cuda";
 
-  services.rustdesk-server.enable = true; # doesnt work yet sadge
-
   virtualisation.docker.enable = true;
   virtualisation.docker.enableNvidia = true;
   users.extraGroups.docker.members = [ "yigit" "f0ss" "yokul" ];
