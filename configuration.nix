@@ -13,8 +13,8 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./nixos/hyprland.nix # wayland
-      # ./nixos/gnome.nix
+      # ./nixos/hyprland.nix # wayland
+      ./nixos/gnome.nix
       # ./nixos/kde.nix
     ];
 # Bootloader.
@@ -105,6 +105,7 @@ in
   (jetbrains.plugins.addPlugins jetbrains.idea-community-bin [ "github-copilot" ])
 
 	# basic stuff
+  # gnomeExtensions.pop-shell 
 	wget
 	git
 	curl
@@ -265,7 +266,6 @@ in
   services.ollama.acceleration = "cuda";
 
   services.rustdesk-server.enable = true; # doesnt work yet sadge
-  services.rustdesk-server.relayIP = "45.77.136.126";
 
   virtualisation.docker.enable = true;
   virtualisation.docker.enableNvidia = true;
@@ -283,6 +283,9 @@ in
   
   programs.mosh.enable = true;
   programs.java.enable = true;
+
+  services.udisks2.enable = true; # automounting
+  services.gvfs.enable = true; # automounting
 
   # nixpkgs.overlays = [ # until catppuccin is merged
   #     (final: prev: {

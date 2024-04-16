@@ -11,6 +11,7 @@
 
   home.packages = with pkgs; [
     # f0ss nsfw
+    qbittorrent
     cryptomator # encrypt files
     librewolf
     mpv

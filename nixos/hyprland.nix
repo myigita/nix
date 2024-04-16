@@ -10,6 +10,8 @@
   xdg.portal.wlr.enable = true;
 	xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-kde pkgs.xdg-desktop-portal];
 
+  security.pam.services.yigit.kwallet.enable = true;
+  security.pam.services.f0ss.kwallet.enable = true;
   security.pam.services.swaylock = { 
   };
 
@@ -26,6 +28,8 @@
   # };
 
   environment.systemPackages = with pkgs; [
+    kwalletcli
+    libsForQt5.kwallet
     wayvnc # remote desktop
     xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland

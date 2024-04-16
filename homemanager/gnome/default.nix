@@ -1,4 +1,4 @@
-{ ... }:
+{ home, pkgs, ... }:
 
 {
   dconf.settings = {
@@ -16,9 +16,18 @@
       disable-user-extensions = false;
       enabled-extensions = [
         "user-theme@gnome-shell-extensions.gcampax.github.com"
-        "trayIconsReloaded@selfmade.pl"
-        "Vitals@CoreCoding.com"
+        "appindicatorsupport@rgcjonas.gmail.com"
+        "gsconnect@andyholmes.github.io"
+        "pop-shell@system76.com"
       ];
     };
-  };
+  }; 
+
+  home.packages = with pkgs; [
+    # ...
+    gnomeExtensions.user-themes
+    gnomeExtensions.gsconnect
+    gnomeExtensions.appindicator
+    gnomeExtensions.pop-shell
+  ];
 }

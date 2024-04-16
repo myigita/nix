@@ -4,18 +4,24 @@
   imports = [
     # Hyprland
     # inputs.hyprland.homeManagerModules.default
-    ../homemanager/hypr # points to ./hypr/default.nix # wayland
+    # ../homemanager/hypr # points to ./hypr/default.nix # wayland
 
     # Espanso
-    # ../homemanager/espanso
+    ../homemanager/espanso
 
     # Gnome Settings
-    # ../homemanager/gnome
+    ../homemanager/gnome
   ];
 
   # programs.espanso.enable = true;
 
   home.packages = with pkgs; [
+    gnome.gnome-tweaks
+    appimage-run
+    cryptomator
+    android-tools
+    usbutils
+    udiskie
     # playerctl
     # sptlrx
     # google-chrome
@@ -25,7 +31,7 @@
     qmk
     # notesnook
     zoxide
-    # rustdesk-flutter
+    rustdesk-flutter
     libsForQt5.qt5.qtwayland # qt wayland
     ncspot # spotify cli
     fzf # fuzzy finder
@@ -42,7 +48,7 @@
     glib # gnome settings (for dark mode with gnome apps)
     neofetch # system info
     neovim # text editor
-    bitwarden # password manager // TODO choose one
+    bitwarden-cli # password manage
     fish # shell
     gnome.nautilus # file manager // TODO CHOOSE ONE
     vivaldi # web browser
