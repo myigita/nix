@@ -29,5 +29,6 @@
     gnomeExtensions.gsconnect
     gnomeExtensions.appindicator
     gnomeExtensions.pop-shell
+    pop-launcher
   ];
 }
