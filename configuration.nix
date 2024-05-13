@@ -263,7 +263,7 @@ in
   boot.supportedFilesystems = [ "ntfs" ];
 
   services.ollama.enable = true;
-  services.ollama.acceleration = "cuda";
+  # services.ollama.acceleration = "cuda"; # wait til fix
 
   virtualisation.docker.enable = true;
   virtualisation.docker.enableNvidia = true;
@@ -273,11 +273,11 @@ in
   #   setSocketVariable = true;
   # };
 
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
-  };
+  # nix.gc = { // nh supposedly takes care of this
+  #   automatic = true;
+  #   dates = "daily";
+  #   options = "--delete-older-than 3d";
+  # };
   
   programs.mosh.enable = true;
   programs.java.enable = true;
@@ -285,30 +285,12 @@ in
   services.udisks2.enable = true; # automounting
   services.gvfs.enable = true; # automounting
 
-  # nixpkgs.overlays = [ # until catppuccin is merged
-  #     (final: prev: {
-  #       pythonPackagesExtensions =
-  #         prev.pythonPackagesExtensions
-  #         ++ [
-  #           (
-  #             python-final: python-prev: {
-  #               catppuccin = python-prev.catppuccin.overridePythonAttrs (oldAttrs: rec {
-  #                 version = "1.3.2";
-  #                 src = prev.fetchFromGitHub {
-  #                   owner = "catppuccin";
-  #                   repo = "python";
-  #                   rev = "refs/tags/v${version}";
-  #                   hash = "sha256-spPZdQ+x3isyeBXZ/J2QE6zNhyHRfyRQGiHreuXzzik=";
-  #                 };
+  programs.kdeconnect.enable = true;
 
-  #                 # can be removed next version
-  #                 disabledTestPaths = [
-  #                   "tests/test_flavour.py" # would download a json to check correctness of flavours
-  #                 ];
-  #               });
-  #             }
-  #           )
-  #         ];
-  #     })
-  #   ];
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 4d --keep 3";
+    flake = "/share/nix/";
+  };
 }

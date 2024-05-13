@@ -16,7 +16,7 @@
   # programs.espanso.enable = true;
 
   home.packages = with pkgs; [
-    gnome.gnome-tweaks
+    # libsForQt5.kdeconnect-kde
     appimage-run
     cryptomator
     android-tools
