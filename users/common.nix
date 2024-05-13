@@ -17,6 +17,9 @@
 
   home.packages = with pkgs; [
     # libsForQt5.kdeconnect-kde
+    spotify
+    colorz
+    pywal
     appimage-run
     cryptomator
     android-tools
@@ -69,7 +72,7 @@
       pip
       # django
     ]))
-    nodejs_21
+    nodejs_22
     cargo
     ripgrep
     neovim

@@ -273,11 +273,11 @@ in
   #   setSocketVariable = true;
   # };
 
-  # nix.gc = { // nh supposedly takes care of this
-  #   automatic = true;
-  #   dates = "daily";
-  #   options = "--delete-older-than 3d";
-  # };
+  nix.gc = { # nh supposedly takes care of this
+    automatic = true;
+    dates = "daily";
+    options = "--delete-older-than +5";
+  };
   
   programs.mosh.enable = true;
   programs.java.enable = true;
@@ -287,10 +287,10 @@ in
 
   programs.kdeconnect.enable = true;
 
-  programs.nh = {
-    enable = true;
-    clean.enable = true;
-    clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = "/share/nix/";
-  };
+  # programs.nh = {
+  #   enable = true;
+  #   clean.enable = true;
+  #   clean.extraArgs = "--keep-since 4d --keep 3";
+  #   flake = "/share/nix/";
+  # };
 }
