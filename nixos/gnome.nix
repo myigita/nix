@@ -4,7 +4,6 @@
     enable = true;
     xkb.layout = "tr";
     displayManager.gdm.enable = true;
-    # displayManager.gdm.wayland = false;
     desktopManager.gnome.enable = true;
   };
 

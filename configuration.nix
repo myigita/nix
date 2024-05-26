@@ -252,9 +252,9 @@ in
 
   services.flatpak.enable = true;
 
-  # virtualisation.virtualbox.host.enable = true;
-  # users.extraGroups.vboxusers.members = [ "yigit" ];
-  # virtualisation.virtualbox.guest.enable = true;
+   virtualisation.virtualbox.host.enable = true;
+   users.extraGroups.vboxusers.members = [ "yigit" ];
+   virtualisation.virtualbox.guest.enable = true;
 
   nixpkgs.config.permittedInsecurePackages = [
     "freeimage-unstable-2021-11-01"
@@ -276,7 +276,7 @@ in
   nix.gc = { # nh supposedly takes care of this
     automatic = true;
     dates = "daily";
-    options = "--delete-older-than +5";
+    options = "--delete-older-than 3d";
   };
   
   programs.mosh.enable = true;

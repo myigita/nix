@@ -17,8 +17,11 @@
       enabled-extensions = [
         "user-theme@gnome-shell-extensions.gcampax.github.com"
         "appindicatorsupport@rgcjonas.gmail.com"
-        # "gsconnect@andyholmes.github.io"
         "pop-shell@system76.com"
+        "blur-my-shell@aunetx"
+        "mediacontrols@cliffniff.github.com"
+        # "openbar@neuromorph"
+        # "gsconnect@andyholmes.github.io"
       ];
     };
   }; 
@@ -31,5 +34,8 @@
     gnomeExtensions.pop-shell
     # pop-launcher # crashes idk why
     gnome.gnome-tweaks
+    gnomeExtensions.media-controls
+    gnomeExtensions.blur-my-shell
+    # gnomeExtensions.open-bar
   ];
 }

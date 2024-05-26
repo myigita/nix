@@ -7,7 +7,7 @@
     # ../homemanager/hypr # points to ./hypr/default.nix # wayland
 
     # Espanso
-    ../homemanager/espanso
+    # ../homemanager/espanso
 
     # Gnome Settings
     ../homemanager/gnome
@@ -17,9 +17,12 @@
 
   home.packages = with pkgs; [
     # libsForQt5.kdeconnect-kde
+    espanso-wayland # TODO remove this or other espanso
     spotify
+
     colorz
     pywal
+
     appimage-run
     cryptomator
     android-tools
@@ -70,6 +73,7 @@
       # scikitlearn
       openai
       pip
+      requests
       # django
     ]))
     nodejs_22
@@ -263,7 +267,7 @@
   programs.fish = {
     enable = true;
     shellAliases = {
-        upd="cd /shared/nix && nix flake update && sudo nixos-rebuild switch --flake /shared/nix/"; # update nixos
+        upd="nix flake update /shared/nix/ && sudo nixos-rebuild switch --flake /shared/nix/ && nix profile diff-closures --profile /nix/var/nix/profiles/system && sudo sh /shared/nix/trim-generations.sh 5 0 system"; # update nixos
         nswitch="sudo nixos-rebuild switch --flake /shared/nix/"; # nixos-rebuild switch
         dir="dir --color"; # dir but better
         sship="ifconfig wlp0s20f3 | grep -oE 'inet ([0-9]{1,3}\.){3}[0-9]{1,3}' | awk '{print $2}'"; # get local ip
@@ -390,6 +394,25 @@
   # config.programs.mosh = { # mobile shell for ssh
   #   enable = true;
   # };
+
+  programs.bash = {
+    enable = true;
+    bashrcExtra = ''
+      # Add custom bashrc here
+      # Import colorscheme from 'wal' asynchronously
+      # &   # Run the process in the background.
+      # ( ) # Hide shell job control messages.
+      # Not supported in the "fish" shell.
+      (cat ~/.cache/wal/sequences &)
+
+      # Alternative (blocks terminal for 0-3ms)
+      cat ~/.cache/wal/sequences
+
+      # To add support for TTYs this line can be optionally added.
+      source ~/.cache/wal/colors-tty.sh
+      fish
+      '';
+  };
 
   # nixpkgs.overlays = [ # until catppuccin is merged
   #     (final: prev: {
