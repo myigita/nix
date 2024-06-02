@@ -16,6 +16,10 @@
   # programs.espanso.enable = true;
 
   home.packages = with pkgs; [
+
+    flutter
+    android-tools
+
     # libsForQt5.kdeconnect-kde
     espanso-wayland # TODO remove this or other espanso
     spotify
@@ -25,13 +29,11 @@
 
     appimage-run
     cryptomator
-    android-tools
     usbutils
     udiskie
     # playerctl
     # sptlrx
     # google-chrome
-    flutter
     autossh
     fastfetch
     qmk
